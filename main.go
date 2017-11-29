@@ -8,9 +8,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-
-	"golang.org/x/net/html"
-	"xi2.org/x/htmlnode" // a bit unmaintained, but does the job well
 )
 
 const url = "http://www.apodro.ch/"
@@ -38,11 +35,13 @@ func main() {
 	defer res.Body.Close()
 
 	r := bytes.NewReader(b)
-	root, _ := html.Parse(r)
+	_ = r
+	// root, _ := html.Parse(r)
 	// log.Println(root)
-	div := htmlnode.Find(root, `<div class="daydeal view view-daydeal view-id-daydeal view-display-id-block_1 js-view-dom-id-1a2f7eb1fea23260feb025572f847338f5bf2c96ccb2ece695d93e7678871082">`)[0]
-	anchor := htmlnode.Find(div, `<a>`)
-	log.Println(anchor[0].Attr)
+	// div := htmlnode.Find(root, `<div class="daydeal view view-daydeal view-id-daydeal view-display-id-block_1 js-view-dom-id-*">`)[0]
+	// anchor := htmlnode.Find(div, `<a>`)
+	// log.Println(anchor)
+	// log.Println(anchor[0].Attr)
 }
 
 func getProductName(url string) string {
